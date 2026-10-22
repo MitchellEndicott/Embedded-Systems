@@ -1,0 +1,18 @@
+description: Analog Devices analog temperature sensor TMP36
+compatible: "adi,tmp36"
+include: sensor-device.yaml
+properties:
+  io-channels:
+    required: true
+    description: ADC channel for temperature sensor
+  vtemp25:
+    type: int
+    default: 750
+    description: |
+      Temperature sensor voltage at 25 degrees Celsius
+      in millivolts
+  sensor-slope:
+    type: int
+    default: 10
+    description: |
+      Temperature sensor slope in millivolts per degree Celsius

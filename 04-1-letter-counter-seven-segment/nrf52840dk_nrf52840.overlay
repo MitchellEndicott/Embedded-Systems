@@ -1,0 +1,12 @@
+/ {
+  photointerrupter {
+    compatible = "gpio-keys";
+    photo: photo {
+    gpios = <&gpio0 3 GPIO_ACTIVE_HIGH>;
+    label = "Photo Interrupter";
+    };
+  };
+  aliases {
+    photo0 = &photo;
+  };
+};

@@ -1,0 +1,45 @@
+// To get started, press Ctrl+Space to bring up the completion menu and view the available nodes.
+
+// You can also use the buttons in the sidebar to perform actions on nodes.
+// Actions currently available include:
+
+// * Enabling / disabling the node
+// * Adding the bus to a bus
+// * Removing the node
+// * Connecting ADC channels
+
+// For more help, browse the DeviceTree documentation at https://docs.zephyrproject.org/latest/guides/dts/index.html
+// You can also visit the nRF DeviceTree extension documentation at https://docs.nordicsemi.com/bundle/nrf-connect-vscode/page/guides/ncs_configure_app.html#devicetree-support-in-the-extension
+
+/{
+  servo: hs422_servo {
+    compatible = "pwm-servo"; // <1>
+    pwms = <&pwm0 0 PWM_MSEC(20) PWM_POLARITY_NORMAL>; // <2>
+    min-pulse = <PWM_USEC(600)>; // <3>
+    max-pulse = <PWM_USEC(2400)>; // <4>
+    center-pw = <PWM_USEC(1500)>; // <5>
+    deg-to-pw = <PWM_USEC(10)>; // <6>
+  };
+};
+
+&pwm0 {
+  status = "okay"; // <1>
+  pinctrl-0 = <&pwm0_my_default>;
+  pinctrl-1 = <&pwm0_my_sleep>;
+  pinctrl-names = "default", "sleep";
+};
+
+&pinctrl {
+  pwm0_my_default: pwm0_my_default {
+    group1 {
+      psels = <NRF_PSEL(PWM_OUT0, 0, 3)>;
+    };
+  };
+
+  pwm0_my_sleep: pwm0_my_sleep {
+    group1 {
+      psels = <NRF_PSEL(PWM_OUT0, 0, 3)>;
+      low-power-enable; // <5>
+    };
+  };
+};

@@ -1,0 +1,24 @@
+description: PWM-driven servo
+compatible: "pwm-servo"
+include: base.yaml
+properties:
+  pwms:
+    required: true
+    type: phandle-array
+    description: PWM specifier driving the servo
+  min-pulse:
+    required: true
+    type: int
+    description: Minimum pulse width (nanoseconds)
+  max-pulse:
+    required: true
+    type: int
+    description: Maximum pulse width (nanoseconds)
+  deg-to-pw:
+    required: true
+    type: int
+    description: Conversion factor from degrees to pulse width (nanoseconds)
+  center-pw:
+    required: true
+    type: int
+    description: Pulse width for center position (nanoseconds)

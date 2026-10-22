@@ -1,0 +1,14 @@
+&spi0 { status = "disabled"; };
+&i2c1 { status = "disabled"; };
+&i2c0 {
+    status = "okay";
+    acc: adxl345@53 {
+        compatible = "i2c-device";
+        reg = <0x53>; 
+        status = "okay";
+    };
+};
+
+&gpio0 {
+    status = "okay";
+};

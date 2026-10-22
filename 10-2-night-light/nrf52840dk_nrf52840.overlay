@@ -1,0 +1,22 @@
+/ {
+    zephyr,user {
+        io-channels = <&adc 0>;
+    };
+    buttons {
+        sw0: button_0 {
+            gpios = <&gpio0 3 0x11>;
+        };
+    };
+};
+&adc {
+    status = "okay";
+
+    channel@0 {
+        reg = <0 0 1>;
+        zephyr,reference = "ADC_REF_INTERNAL";
+        zephyr,gain = "ADC_GAIN_1_6";
+        zephyr,acquisition-time = <ADC_ACQ_TIME_DEFAULT>;
+        zephyr,input-positive = <NRF_SAADC_AIN0>;
+        zephyr,resolution = <12>;
+    };
+};
